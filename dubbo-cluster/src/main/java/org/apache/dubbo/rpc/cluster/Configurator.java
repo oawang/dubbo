@@ -86,7 +86,8 @@ public interface Configurator extends Comparable<Configurator> {
             Map<String, String> override = new HashMap<>(url.getParameters());
             //The anyhost parameter of override may be added automatically, it can't change the judgement of changing url
             override.remove(ANYHOST_KEY);
-            if (CollectionUtils.isEmptyMap(override)) {
+            if (override.size() == 0) {
+                configurators.clear();
                 continue;
             }
             configurators.add(configuratorFactory.getConfigurator(url));
